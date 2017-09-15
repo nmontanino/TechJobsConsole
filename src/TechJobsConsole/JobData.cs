@@ -50,7 +50,7 @@ namespace TechJobsConsole
             {
                 string aValue = row[column];
                 
-                if (aValue.Contains(value))
+                if (aValue.ToUpper().Contains(value.ToUpper()))
                 {
                     jobs.Add(row);
                 }
@@ -73,7 +73,7 @@ namespace TechJobsConsole
                     allValues.Append(rowValues);
                 }
                 
-                if (allValues.ToString().Contains(value))
+                if (allValues.ToString().ToUpper().Contains(value.ToUpper()))
                 {
                     jobs.Add(row);
                 }

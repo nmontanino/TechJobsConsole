@@ -65,6 +65,7 @@ namespace TechJobsConsole
                     {
                         searchResults = JobData.FindByValue(searchTerm);
                         PrintJobs(searchResults);
+                        //StringComparison.OrdinalIgnoreCase;
                     }
                     else
                     {
