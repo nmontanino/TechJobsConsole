@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Text;
-using System.Linq;
+using System.Globalization;
 
 namespace TechJobsConsole
 {
@@ -10,6 +9,7 @@ namespace TechJobsConsole
     {
         static List<Dictionary<string, string>> AllJobs = new List<Dictionary<string, string>>();
         static bool IsDataLoaded = false;
+        static CultureInfo invCulture = CultureInfo.InvariantCulture;
 
         public static List<Dictionary<string, string>> FindAll()
         {
@@ -50,7 +50,8 @@ namespace TechJobsConsole
             {
                 string aValue = row[column];
                 
-                if (aValue.ToUpper().Contains(value.ToUpper()))
+                // Case-insensitive culture-insensitive string comparison
+                if (invCulture.CompareInfo.IndexOf(aValue, value, CompareOptions.IgnoreCase) >= 0)
                 {
                     jobs.Add(row);
                 }
@@ -72,8 +73,7 @@ namespace TechJobsConsole
                 {
                     allValues.Append(rowValues);
                 }
-                
-                if (allValues.ToString().ToUpper().Contains(value.ToUpper()))
+                if (invCulture.CompareInfo.IndexOf(allValues.ToString(), value, CompareOptions.IgnoreCase) >= 0)
                 {
                     jobs.Add(row);
                 }
